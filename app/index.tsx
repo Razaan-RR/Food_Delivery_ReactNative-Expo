@@ -1,4 +1,3 @@
-import cn from 'clsx'
 import { LinearGradient } from 'expo-linear-gradient'
 import {
   FlatList,
@@ -24,38 +23,57 @@ export default function Index() {
           const isEven = index % 2 === 0
 
           return (
-            <Pressable android_ripple={{ color: '#ffffff22' }} className="mb-5">
+            <Pressable android_ripple={{ color: '#ffffff22' }} className="mb-6">
               <LinearGradient
                 colors={item.gradient as [string, string]}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
-                className={cn(
-                  'offer-card',
-                  isEven ? 'flex-row-reverse' : 'flex-row',
-                )}
+                className="rounded-2xl flex-row p-5"
+                style={{ minHeight: 180 }}
               >
-                <View className="h-full w-1/2">
-                  <Image
-                    source={item.image}
-                    className="size-full"
-                    resizeMode="contain"
-                  />
-                </View>
-
-                <View
-                  className={cn('offer-card__info', isEven ? 'pl-10' : 'pr-10')}
-                >
-                  <Text className="h1-bold text-white leading-tight">
-                    {item.title}
-                  </Text>
-
-                  <Image
-                    source={images.arrowRight}
-                    className="size-10"
-                    resizeMode="contain"
-                    tintColor="#ffffff"
-                  />
-                </View>
+                {isEven ? (
+                  <>
+                    <View className="w-1/2 justify-center items-start pr-3">
+                      <Image
+                        source={item.image}
+                        className="w-full h-full"
+                        style={{ maxHeight: '100%', flex: 1 }}
+                        resizeMode="contain"
+                      />
+                    </View>
+                    <View className="w-1/2 justify-center items-end pl-3">
+                      <Text className="text-4xl font-quicksand-bold text-white mb-2 text-right">
+                        {item.title}
+                      </Text>
+                      <TouchableOpacity className="bg-white/30 px-5 py-2 rounded-full">
+                        <Text className="text-lg font-quicksand-bold text-white">
+                          Order Now
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                  </>
+                ) : (
+                  <>
+                    <View className="w-1/2 justify-center items-start pr-3">
+                      <Text className="text-4xl font-quicksand-bold text-white mb-2 text-left">
+                        {item.title}
+                      </Text>
+                      <TouchableOpacity className="bg-white/30 px-5 py-2 rounded-full">
+                        <Text className="text-lg font-quicksand-bold text-white">
+                          Order Now
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                    <View className="w-1/2 justify-center items-end pl-3">
+                      <Image
+                        source={item.image}
+                        className="w-full h-full"
+                        style={{ maxHeight: '100%', flex: 1 }}
+                        resizeMode="contain"
+                      />
+                    </View>
+                  </>
+                )}
               </LinearGradient>
             </Pressable>
           )
@@ -64,7 +82,6 @@ export default function Index() {
           <View className="flex-between flex-row w-full my-5">
             <View className="flex-start">
               <Text className="small-bold text-primary">DELIVER TO</Text>
-
               <TouchableOpacity className="flex-center flex-row gap-x-1 mt-0.5">
                 <Text className="paragraph-bold text-dark-100">Croatia</Text>
                 <Image
@@ -74,7 +91,6 @@ export default function Index() {
                 />
               </TouchableOpacity>
             </View>
-
             <CartButton />
           </View>
         )}
