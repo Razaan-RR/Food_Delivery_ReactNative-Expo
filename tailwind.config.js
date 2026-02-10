@@ -5,25 +5,26 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#FE8C00",
-        white: {
-          DEFAULT: "#ffffff",
-          100: "#fafafa",
-          200: "#FE8C00",
-        },
+        primary: "#1E3A8A",
+        secondary: "#F8FAFC",
+        accent: "#16A34A",
+        card: "#FFFFFF",
         gray: {
-          100: "#878787",
-          200: "#878787",
+          100: "#F3F4F6",
+          200: "#D1D5DB",
+          300: "#6B7280",
         },
         dark: {
-          100: "#181C2E",
+          100: "#111827",
         },
-        error: "#F14141",
-        success: "#2F9B65",
+        error: "#DC2626",
+        warning: "#FACC15",
+        success: "#10B981",
+        info: "#0EA5E9",
       },
       fontFamily: {
         quicksand: ["Quicksand-Regular", "sans-serif"],
-        "quicksand-bold": ["Quicksand-Bold"],
+        "quicksand-bold": ["Quicksand-Bold", "sans-serif"],
         "quicksand-semibold": ["Quicksand-SemiBold", "sans-serif"],
         "quicksand-light": ["Quicksand-Light", "sans-serif"],
         "quicksand-medium": ["Quicksand-Medium", "sans-serif"],
