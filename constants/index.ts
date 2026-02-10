@@ -69,25 +69,25 @@ export const offers = [
     id: 1,
     title: 'Smash Feast',
     image: burgerOne,
-    gradient: ['#7C1D12', '#B91C1C'],
+    gradient: ['#B91C1C', '#F87171'], 
   },
   {
     id: 2,
     title: 'Burger Street',
     image: burgerTwo,
-    gradient: ['#9F1239', '#E11D48'],
+    gradient: ['#E11D48', '#EC4899'], 
   },
   {
     id: 3,
     title: 'Pizza Yard',
     image: pizzaOne,
-    gradient: ['#065F46', '#059669'],
+    gradient: ['#059669', '#6EE7B7'], 
   },
   {
     id: 4,
     title: 'Burrito Bay',
     image: buritto,
-    gradient: ['#92400E', '#D97706'],
+    gradient: ['#D97706', '#FFD580'], 
   },
 ]
 

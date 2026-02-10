@@ -1,5 +1,5 @@
 import cn from 'clsx'
-import { Fragment } from 'react'
+import { LinearGradient } from 'expo-linear-gradient'
 import {
   FlatList,
   Image,
@@ -9,7 +9,6 @@ import {
   View,
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { LinearGradient } from 'expo-linear-gradient'
 
 import CartButton from '@/components/CartButton'
 import { images, offers } from '@/constants'
@@ -25,12 +24,9 @@ export default function Index() {
           const isEven = index % 2 === 0
 
           return (
-            <Pressable
-              android_ripple={{ color: '#ffffff22' }}
-              className="mb-5"
-            >
+            <Pressable android_ripple={{ color: '#ffffff22' }} className="mb-5">
               <LinearGradient
-                colors={item.gradient}
+                colors={item.gradient as [string, string]}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
                 className={cn(
@@ -47,10 +43,7 @@ export default function Index() {
                 </View>
 
                 <View
-                  className={cn(
-                    'offer-card__info',
-                    isEven ? 'pl-10' : 'pr-10',
-                  )}
+                  className={cn('offer-card__info', isEven ? 'pl-10' : 'pr-10')}
                 >
                   <Text className="h1-bold text-white leading-tight">
                     {item.title}
@@ -73,9 +66,7 @@ export default function Index() {
               <Text className="small-bold text-primary">DELIVER TO</Text>
 
               <TouchableOpacity className="flex-center flex-row gap-x-1 mt-0.5">
-                <Text className="paragraph-bold text-dark-100">
-                  Croatia
-                </Text>
+                <Text className="paragraph-bold text-dark-100">Croatia</Text>
                 <Image
                   source={images.arrowDown}
                   className="size-3"
