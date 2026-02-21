@@ -72,7 +72,7 @@ export default function TabLayout() {
         options={{
           title: 'Search',
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon title="Search" icon={images.search} focused={focused} />
+            <TabBarIcon title="Discover" icon={images.search} focused={focused} />
           ),
         }}
       />
@@ -81,7 +81,7 @@ export default function TabLayout() {
         options={{
           title: 'Cart',
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon title="Cart" icon={images.bag} focused={focused} />
+            <TabBarIcon title="Orders" icon={images.bag} focused={focused} />
           ),
         }}
       />
@@ -91,7 +91,7 @@ export default function TabLayout() {
           title: 'Profile',
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
-              title="Profile"
+              title="Account"
               icon={images.person}
               focused={focused}
             />
