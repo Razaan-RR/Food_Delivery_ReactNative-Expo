@@ -35,10 +35,7 @@ const Search = () => {
           const isEven = index % 2 === 0
           return (
             <View
-              className={cn(
-                'flex-1 max-w-[48%]',
-                isEven ? 'mt-0' : 'mt-12',
-              )}
+              className={cn('flex-1 max-w-[48%]', isEven ? 'mt-0' : 'mt-12')}
             >
               <View className="bg-white rounded-[35px] p-4 border-2 border-primary/10 shadow-xl shadow-black/10">
                 <MenuCard item={item as MenuItem} />

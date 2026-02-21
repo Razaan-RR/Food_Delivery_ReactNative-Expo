@@ -2,7 +2,7 @@ import { Category } from '@/type'
 import cn from 'clsx'
 import { router, useLocalSearchParams } from 'expo-router'
 import { useState } from 'react'
-import { FlatList, Platform, Text, TouchableOpacity } from 'react-native'
+import { FlatList, Platform, Text, TouchableOpacity, View } from 'react-native'
 
 const Filter = ({ categories }: { categories: Category[] }) => {
   const searchParams = useLocalSearchParams()
@@ -25,32 +25,48 @@ const Filter = ({ categories }: { categories: Category[] }) => {
       keyExtractor={(item) => item.$id}
       horizontal
       showsHorizontalScrollIndicator={false}
-      contentContainerClassName="gap-x-2 pb-3"
-      renderItem={({ item }) => (
-        <TouchableOpacity
-          key={item.$id}
-          className={cn(
-            'filter',
-            active === item.$id ? 'bg-amber-500' : 'bg-white',
-          )}
-          style={
-            Platform.OS === 'android'
-              ? { elevation: 5, shadowColor: '#878787' }
-              : {}
-          }
-          onPress={() => handlePress(item.$id)}
-        >
-          <Text
+      contentContainerClassName="gap-x-3 pb-2"
+      renderItem={({ item }) => {
+        const isActive = active === item.$id
+
+        return (
+          <TouchableOpacity
+            onPress={() => handlePress(item.$id)}
             className={cn(
-              'body-medium',
-              active === item.$id ? 'text-white' : 'text-gray-200',
+              'px-5 py-2.5 rounded-full border',
+              isActive
+                ? 'bg-primary border-primary'
+                : 'bg-white border-primary/20'
             )}
+            style={
+              Platform.OS === 'android'
+                ? { elevation: isActive ? 6 : 3 }
+                : {
+                    shadowColor: '#000',
+                    shadowOpacity: 0.08,
+                    shadowRadius: 8,
+                    shadowOffset: { width: 0, height: 4 },
+                  }
+            }
           >
-            {item.name}
-          </Text>
-        </TouchableOpacity>
-      )}
+            <View className="flex-row items-center gap-x-2">
+              {isActive && (
+                <View className="w-2 h-2 bg-white rounded-full" />
+              )}
+              <Text
+                className={cn(
+                  'font-quicksand-semibold text-sm',
+                  isActive ? 'text-white' : 'text-dark-100'
+                )}
+              >
+                {item.name}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        )
+      }}
     />
   )
 }
+
 export default Filter
