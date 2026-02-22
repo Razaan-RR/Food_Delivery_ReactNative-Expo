@@ -12,8 +12,7 @@ A modern React Native & Expo food delivery app with real-time location, map-base
 * Users can register and log in quickly.
 * Smooth UX with loading indicators.
 
-**Screenshot:**
-![Sign-In](./screenshots/sign-in.jpeg)
+**Screenshot:** <img src="./screenshots/sign-in.jpeg" width="300"/>
 
 ---
 
@@ -23,8 +22,7 @@ A modern React Native & Expo food delivery app with real-time location, map-base
 * Quick access to categories and promotions.
 * Personalized greeting.
 
-**Screenshot:**
-![Home](./screenshots/home.jpeg)
+**Screenshot:** <img src="./screenshots/home.jpeg" width="300"/>
 
 ---
 
@@ -35,8 +33,7 @@ A modern React Native & Expo food delivery app with real-time location, map-base
 * Reverse geocoding shows exact address.
 * Fully functional using **Expo Location** and **OpenStreetMap API**.
 
-**Screenshot:**
-![Map](./screenshots/map.jpeg)
+**Screenshot:** <img src="./screenshots/map.jpeg" width="300"/>
 
 ---
 
@@ -46,8 +43,7 @@ A modern React Native & Expo food delivery app with real-time location, map-base
 * Search functionality integrated with live suggestions.
 * Clean, intuitive card layout for menu items.
 
-**Screenshot:**
-![Discover](./screenshots/discover.jpeg)
+**Screenshot:** <img src="./screenshots/discover.jpeg" width="300"/>
 
 ---
 
@@ -57,8 +53,7 @@ A modern React Native & Expo food delivery app with real-time location, map-base
 * See total prices and checkout easily.
 * Mock checkout flow (can integrate payment gateways later).
 
-**Screenshot:**
-![Cart](./screenshots/orders.jpeg)
+**Screenshot:** <img src="./screenshots/orders.jpeg" width="300"/>
 
 ---
 
