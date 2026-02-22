@@ -1,27 +1,46 @@
-import React, { useEffect, useState } from 'react'
-import { View, Text, Image, ActivityIndicator, ScrollView } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import { account, appwriteConfig } from '@/lib/appwrite'
+import { useRouter } from 'expo-router'
+import React, { useState } from 'react'
+import {
+  ActivityIndicator,
+  Alert,
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import useAuthStore from '@/store/auth.store'
 
 const Profile = () => {
-  const [user, setUser] = useState<any>(null)
-  const [loading, setLoading] = useState(true)
+  const router = useRouter()
+  const { user, isLoading, fetchAuthenticatedUser } = useAuthStore()
+  const [loggingOut, setLoggingOut] = useState(false)
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const res = await account.get()
-        setUser(res)
-      } catch (error) {
-        console.log(error)
-      } finally {
-        setLoading(false)
-      }
-    }
-    fetchUser()
-  }, [])
+  const handleLogout = async () => {
+    Alert.alert('Logout', 'Are you sure you want to logout?', [
+      { text: 'Cancel', style: 'cancel' },
+      {
+        text: 'Logout',
+        style: 'destructive',
+        onPress: async () => {
+          try {
+            setLoggingOut(true)
+            await account.deleteSession('current')
+            await fetchAuthenticatedUser()
+            router.replace('/(auth)/sign-in')
+          } catch (error) {
+            console.log(error)
+          } finally {
+            setLoggingOut(false)
+          }
+        },
+      },
+    ])
+  }
 
-  if (loading) {
+  if (isLoading || !user) {
     return (
       <View className="flex-1 items-center justify-center bg-bg-light">
         <ActivityIndicator size="large" color="#16A34A" />
@@ -30,7 +49,7 @@ const Profile = () => {
   }
 
   const avatarUrl = `https://fra.cloud.appwrite.io/v1/avatars/initials?name=${encodeURIComponent(
-    user.name
+    user.name,
   )}&project=${appwriteConfig.projectId}`
 
   return (
@@ -45,8 +64,24 @@ const Profile = () => {
             />
           </View>
 
-          <Text className="text-2xl font-bold mt-4 text-dark-100">{user.name}</Text>
+          <Text className="text-2xl font-bold mt-4 text-dark-100">
+            {user.name}
+          </Text>
           <Text className="text-gray-400 mt-1 text-base">{user.email}</Text>
+
+          <TouchableOpacity
+            onPress={handleLogout}
+            disabled={loggingOut}
+            className="mt-6 bg-red-500 px-6 py-3 rounded-full w-full items-center"
+          >
+            {loggingOut ? (
+              <ActivityIndicator color="#fff" />
+            ) : (
+              <Text className="text-white font-semibold text-base">
+                Logout
+              </Text>
+            )}
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </SafeAreaView>

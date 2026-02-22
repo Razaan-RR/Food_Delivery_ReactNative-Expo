@@ -3,25 +3,32 @@ import { Link, router } from 'expo-router'
 import { useState } from 'react'
 import { Alert, Text, View } from 'react-native'
 import CustomButton from '@/components/CustomButton'
-import { createUser } from '@/lib/appwrite'
+import { createUser, signIn, account } from '@/lib/appwrite'
+import useAuthStore from '@/store/auth.store'
 
 const SignUp = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [form, setForm] = useState({ name: '', email: '', password: '' })
+  const { fetchAuthenticatedUser } = useAuthStore()
 
   const submit = async () => {
     const { name, email, password } = form
 
     if (!name || !email || !password)
-      return Alert.alert(
-        'Error',
-        'Please enter valid email address & password.',
-      )
+      return Alert.alert('Error', 'Please enter valid name, email address & password.')
 
     setIsSubmitting(true)
 
     try {
-      await createUser({ email,  password,  name });
+      await createUser({ email, password, name })
+
+      try {
+        await account.get()
+      } catch {
+        await signIn({ email, password })
+      }
+
+      await fetchAuthenticatedUser()
       router.replace('/')
     } catch (error: any) {
       Alert.alert('Error', error.message)
@@ -54,9 +61,7 @@ const SignUp = () => {
         label="Password"
         secureTextEntry={true}
       />
-
       <CustomButton title="Sign Up" isLoading={isSubmitting} onPress={submit} />
-
       <View className="flex justify-center mt-5 flex-row gap-2">
         <Text className="base-regular text-gray-100">
           Already have an account?
