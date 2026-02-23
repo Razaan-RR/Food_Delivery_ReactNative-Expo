@@ -1,4 +1,4 @@
-# 🍔 Food Delivery App – React Native Food Delivery
+# 🍔 Food Delivery App – with React Native and Expo
 
 A modern React Native & Expo food delivery app with real-time location, map-based delivery, discoverable restaurants, cart management, and smooth user experience. Designed to mimic a real-world food delivery app.
 
@@ -60,7 +60,7 @@ A modern React Native & Expo food delivery app with real-time location, map-base
 ## 🛠 Tech Stack
 
 * **Frontend:** React Native + Expo
-* **State Management:** Zustand / React Hooks
+* **State Management:** Zustand
 * **Maps:** react-native-maps + OpenStreetMap API
 * **Location Services:** Expo Location
 * **Backend:** Appwrite (Authentication + User Data)
