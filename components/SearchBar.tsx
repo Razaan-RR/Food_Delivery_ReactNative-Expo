@@ -5,7 +5,7 @@ import { Image, TextInput, TouchableOpacity, View, Platform } from 'react-native
 
 const Searchbar = () => {
   const params = useLocalSearchParams<{ query: string }>()
-  const [query, setQuery] = useState(params.query || '')
+  const [query, setQuery] = useState(params.query || '');
 
   const handleSearch = (text: string) => {
     setQuery(text)
